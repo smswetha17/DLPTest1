@@ -1,0 +1,40 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class DlpTest {
+
+    public static void main(String[] args) {
+        String sensitiveData = "This is a sample text with a credit card number: 1234-5678-9012-3456 and an email: test@example.com.";
+
+        // Regular expression for a simple credit card number pattern (not exhaustive)
+        String creditCardRegex = "\\b(?:\\d{4}[ -]?){3}\\d{4}\\b"; 
+        // Regular expression for a simple email address pattern
+        String emailRegex = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b";
+
+        System.out.println("Scanning for sensitive information in: \"" + sensitiveData + "\"");
+
+        // Check for credit card numbers
+        Pattern creditCardPattern = Pattern.compile(creditCardRegex);
+        Matcher creditCardMatcher = creditCardPattern.matcher(sensitiveData);
+        while (creditCardMatcher.find()) {
+            System.out.println("DLP Alert: Found potential credit card number: " + creditCardMatcher.group());
+        }
+
+        // Check for email addresses
+        Pattern emailPattern = Pattern.compile(emailRegex);
+        Matcher emailMatcher = emailPattern.matcher(sensitiveData);
+        while (emailMatcher.find()) {
+            System.out.println("DLP Alert: Found potential email address: " + emailMatcher.group());
+        }
+
+        String noSensitiveData = "This text contains no sensitive information.";
+        System.out.println("\nScanning for sensitive information in: \"" + noSensitiveData + "\"");
+
+        creditCardMatcher = creditCardPattern.matcher(noSensitiveData);
+        emailMatcher = emailPattern.matcher(noSensitiveData);
+
+        if (!creditCardMatcher.find() && !emailMatcher.find()) {
+            System.out.println("No sensitive information found.");
+        }
+    }
+}
