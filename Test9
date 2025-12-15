@@ -1,0 +1,38 @@
+private static void scan(String text, Pattern ccPattern, Pattern emailPattern) { 
+
+    Matcher ccMatcher = ccPattern.matcher(text); 
+
+    Matcher emailMatcher = emailPattern.matcher(text); 
+
+  
+
+    boolean found = false; 
+
+  
+
+    while (ccMatcher.find()) { 
+
+        System.out.println("DLP Alert: Found potential credit card number: " + ccMatcher.group()); 
+
+        found = true; 
+
+    } 
+
+  
+
+    while (emailMatcher.find()) { 
+
+        System.out.println("DLP Alert: Found potential email address: " + emailMatcher.group()); 
+
+        found = true; 
+
+    } 
+
+
+    if (!found) { 
+
+        System.out.println("No sensitive information found."); 
+
+    } 
+
+} 
