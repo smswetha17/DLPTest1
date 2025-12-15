@@ -1,0 +1,29 @@
+public class Main {
+
+    public static void main(String[] args) {
+        Application app = new Application();
+        int result = app.process(10, 5);
+
+        if (result > 0) {
+            System.out.println("Result: " + result);
+        } else {
+            System.out.println("No result");
+        }
+    }
+}
+
+class Application {
+
+    public int process(int valueA, int valueB) {
+        int sum = valueA + valueB;
+        int difference = valueA - valueB;
+        return calculate(sum, difference);
+    }
+
+    private int calculate(int x, int y) {
+        if (x > y) {
+            return x * y;
+        }
+        return x + y;
+    }
+}
