@@ -1,0 +1,11 @@
+def calculate_tax(amount, rate):
+    if amount <= 0:
+        return 0
+    return amount * rate
+
+class Invoice:
+    def __init__(self, total):
+        self.total = total
+
+    def tax(self):
+        return calculate_tax(self.total, 0.18)
