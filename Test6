@@ -1,0 +1,63 @@
+// package keyword: Declares the package for this class
+package com.example.keywordsdemo;
+
+// import keyword: Imports necessary classes from other packages
+import java.util.Scanner;
+
+// public keyword: Makes the class accessible from anywhere
+// class keyword: Declares a new class named 'KeywordDemo'
+public class KeywordDemo {
+
+    // static keyword: The main method belongs to the class, not an instance
+    // void keyword: Indicates that the method does not return a value
+    // main is an identifier, not a keyword
+    public static void main(String[] args) {
+        // final keyword: Declares a variable whose value cannot change
+        // int keyword: A primitive data type for integers
+        final int constantValue = 10;
+
+        // new keyword: Creates a new object instance of the Scanner class
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a number:");
+
+        // if, else keywords: Control flow statements
+        if (scanner.hasNextInt()) {
+            int inputNum = scanner.nextInt();
+
+            // switch, case, break, default keywords: Multi-branch control statements
+            switch (inputNum) {
+                case 1:
+                    System.out.println("You entered one.");
+                    break;
+                case 10:
+                    System.out.println("You entered the constant value.");
+                    break;
+                default:
+                    System.out.println("Input recognized.");
+            }
+        } else {
+            System.out.println("Invalid input. Not a number.");
+        }
+        scanner.close();
+
+        // for keyword: A looping control statement
+        for (int i = 0; i < 5; i++) {
+            // continue keyword: Skips the current iteration of the loop
+            if (i == 2) {
+                continue;
+            }
+            System.out.println("Loop iteration: " + i);
+        }
+
+        // try, catch, finally keywords: Exception handling
+        try {
+            int result = constantValue / 0; // This will cause an ArithmeticException
+        } catch (ArithmeticException e) {
+            // catch keyword: Catches the specific exception type
+            System.out.println("Caught an error: Cannot divide by zero.");
+        } finally {
+            // finally keyword: Code block that executes regardless of an exception
+            System.out.println("Cleanup complete (finally block).");
+        }
+    }
+}
